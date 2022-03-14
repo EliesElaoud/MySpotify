@@ -17,7 +17,7 @@ class Top extends React.Component {
     async componentDidMount () {
         this.setState({ isLoading : true });
         
-        const topArtistsList = await getTopArtistsList();
+        const topArtistsList = await getTopArtistsList(this.props.navigation);
 
         this.setState({ isLoading : false, topArtistsList : topArtistsList });
     }

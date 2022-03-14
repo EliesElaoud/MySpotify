@@ -3,6 +3,7 @@ import React from 'react';
 import { View, StatusBar } from 'react-native';
 import * as Font from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
+import { isTokenExpired } from '../utils/Config';
 
 import Splashscreen from '../screens/splashscreen/Splashscreen';
 import Application from './tabs/Application';
@@ -24,18 +25,10 @@ class Root extends React.Component {
 
         // CHECK TOKEN AND REDIRECT IF IS OK
 
-        const logParams = await SecureStore.getItemAsync('params');
-
-        if (logParams != null) {
-            const deserializedParams = JSON.parse(logParams);
-            const expiresIn = parseInt(deserializedParams.expires_in)
-            const expirationDate = deserializedParams.datetime + expiresIn * 1000;
-            
-            if (Date.now() < expirationDate)
-                this.setState({ navigator : 'ApplicationNavigator' });
-            else
-                SecureStore.deleteItemAsync('params');
-        }
+        if (!isTokenExpired())
+            this.setState({ navigator : 'ApplicationNavigator' });
+        else
+            SecureStore.deleteItemAsync('params');
 
         // --
 
