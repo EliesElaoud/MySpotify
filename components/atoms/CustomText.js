@@ -11,11 +11,20 @@ class CustomText extends React.Component {
         }
     }
 
+    componentDidMount () {
+        const { isSemiBold } = this.props;
+        this.setState({ font : isSemiBold ? 'MontserratSemiBold' : 'MontserratMedium' });
+    }
+
     render () {
         const { children, style, isBold } = this.props;
+        const { font } = this.state;
 
         return (
-            <Text {...this.props} style={[ style, { fontFamily : isBold ? 'MontserratBold' : 'MontserratMedium' }]}>{ children }</Text>
+            <Text {...this.props} style={[
+                style,
+                { fontFamily : isBold ? 'MontserratBold' : font }
+            ]}>{ children }</Text>
         );
     }
 }

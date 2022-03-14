@@ -45,7 +45,14 @@ class Authentication extends React.Component {
                 }
             });
             this.setState({ ...this.state, userInfo: userInfo.data })
-            await SecureStore.setItemAsync('token', results.params.access_token);
+
+            const params = {
+                token : results.params.access_token,
+                datetime : Date.now(),
+                expires_in : results.params.expires_in
+            }
+
+            await SecureStore.setItemAsync('params', JSON.stringify(params));
             this.props.navigation.navigate('ApplicationNavigator');
         }
     }
@@ -53,7 +60,7 @@ class Authentication extends React.Component {
     render () {
         return (
             <View style={ styles.container }>
-                <CustomTitle title={translate('title')} subtitle={translate('connect_spotify')} />
+                <CustomTitle title={translate('title')} subtitle={translate('connect_spotify')} titleFontSize={25} subtitleFontSize={12} />
                 <CustomButton text={translate('connexion')} style={styles.btnLogin} onPress={() => this.handleSpotifyLogin()} />
             </View>
         )

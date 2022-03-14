@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import * as Font from 'expo-font';
+import * as SecureStore from 'expo-secure-store';
 
 import Splashscreen from '../screens/splashscreen/Splashscreen';
 import Application from './tabs/Application';
@@ -12,14 +13,31 @@ class Root extends React.Component {
 
         this.state = {
             isLoading : true,
-            navigatorName : 'application'
+            navigator : 'AuthenticationNavigator'
         }
     }
 
     async componentDidMount() {
         this.setState({ isLoading : true });
-
+            
         await this.loadFonts();
+
+        // CHECK TOKEN AND REDIRECT IF IS OK
+
+        const logParams = await SecureStore.getItemAsync('params');
+
+        if (logParams != null) {
+            const deserializedParams = JSON.parse(logParams);
+            const expiresIn = parseInt(deserializedParams.expires_in)
+            const expirationDate = deserializedParams.datetime + expiresIn * 1000;
+            
+            if (Date.now() < expirationDate)
+                this.setState({ navigator : 'ApplicationNavigator' });
+            else
+                SecureStore.deleteItemAsync('params');
+        }
+
+        // --
 
         this.setState({ isLoading : false });
     }
@@ -34,7 +52,7 @@ class Root extends React.Component {
     }
 
     render () {
-        const { isLoading, navigatorName } = this.state;
+        const { isLoading, navigator } = this.state;
 
         return (
             <View style={{ flex : 1 }}>
@@ -42,7 +60,7 @@ class Root extends React.Component {
                 { isLoading && <Splashscreen /> }
                 { !isLoading && 
                     <NavigationContainer>
-                        { navigatorName == 'application' && <Application /> }
+                        <Application route={navigator} />
                     </NavigationContainer> 
                 }
             </View>

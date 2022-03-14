@@ -8,12 +8,11 @@ const navigatorOption = {
     tabBarVisible : false,
     gestureEnabled: false
 };
-const INITIAL_ROUTE_NAME = 'AuthenticationNavigator';
 
 export default function Application (props) {
     return (
         <TabApp.Navigator
-            initialRouteName={INITIAL_ROUTE_NAME}
+            initialRouteName={props.route}
             screenOptions={{ headerShown: false }}
         >
             <TabApp.Screen name='AuthenticationNavigator' component={AuthNavigator} options={navigatorOption}/>

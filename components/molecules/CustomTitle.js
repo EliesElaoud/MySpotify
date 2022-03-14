@@ -9,12 +9,12 @@ class CustomTitle extends React.Component {
     }
 
     render () {
-        const { title, subtitle } = this.props;
+        const { title, subtitle, isHeader, titleFontSize, subtitleFontSize, isSubtitleSemiBold } = this.props;
 
         return (
-            <View style={styles.container}>
-                <CustomText isBold style={styles.title}>{ title }</CustomText>
-                <CustomText style={styles.subtitle}>{ subtitle }</CustomText>
+            <View {...this.props}>
+                <CustomText isBold={!isHeader} style={[isHeader ? styles.headerTitle : styles.title, { fontSize : titleFontSize }]}>{ title }</CustomText>
+                <CustomText isSemiBold={isSubtitleSemiBold} style={[isHeader ? styles.headerSubtitle : styles.subtitle, { fontSize : subtitleFontSize }]}>{ subtitle }</CustomText>
             </View>
         )
     }

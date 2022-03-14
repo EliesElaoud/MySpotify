@@ -3,6 +3,11 @@ export default {
 
     // authentication
     connect_spotify : 'Connectez-vous à votre compte spotify',
-    connexion : 'Connexion'
-    //
+    connexion : 'Connexion',
+    // --
+
+    // top
+    top_artists : 'Top artistes',
+    popularity : 'Popularité de '
+    // --
 };
