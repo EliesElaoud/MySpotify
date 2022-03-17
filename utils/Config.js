@@ -22,4 +22,6 @@ export const isTokenExpired = async () => {
         
         return Date.now() >= expirationDate;
     }
+
+    return true;
 }

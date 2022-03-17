@@ -25,9 +25,11 @@ class Root extends React.Component {
 
         // CHECK TOKEN AND REDIRECT IF IS OK
 
-        if (!isTokenExpired())
+        const isTokenExpiredValue = await isTokenExpired();
+
+        if (!isTokenExpiredValue) {
             this.setState({ navigator : 'ApplicationNavigator' });
-        else
+        } else
             SecureStore.deleteItemAsync('params');
 
         // --
