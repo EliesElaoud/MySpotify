@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from 'react-native-elements';
+import styles from '../../styles/atoms/CustomIcon.style';
 
 class CustomIcon extends React.Component {
     constructor (props) {
@@ -16,7 +17,9 @@ class CustomIcon extends React.Component {
                 name={ name }
                 type={ type ?? 'material' }
                 color={ color }
-                onPress={() => onPress()} />
+                disabled={onPress == null}
+                disabledStyle={styles.disabledStyle}
+                onPress={() => onPress && onPress()} />
         );
     }
 }

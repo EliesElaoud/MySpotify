@@ -5,6 +5,8 @@ import colors from '../../theme/colors';
 import BottomTabBarStyle from '../../styles/others/BottomTabBar.style';
 
 import { TopScreen } from '../screens/ArtistsScreen';
+import { StatsScreen } from '../screens/StatsScreen';
+import { SubscriptionsScreen } from '../screens/AlbumsScreen';
 
 const App = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Top';
@@ -16,6 +18,12 @@ const getBottomTabIcon = (route, focused) => {
     switch (route.name) {
         case 'Top':
             iconName = 'emoji-events';
+            break;
+        case 'Subscriptions':
+            iconName = 'subscriptions';
+            break;
+        case 'Stats':
+            iconName = 'insert-chart';
             break;
     }
 
@@ -32,8 +40,9 @@ export default function AuthNavigator() {
                 tabBarShowLabel: false
             })}
         >
-            { /* ARTISTS */ }
             <App.Screen options={TopScreen.navigationOptions} name={'Top'} component={TopScreen.screen} />
+            <App.Screen options={SubscriptionsScreen.navigationOptions} name={'Subscriptions'} component={SubscriptionsScreen.screen} />
+            <App.Screen options={StatsScreen.navigationOptions} name={'Stats'} component={StatsScreen.screen} />
         </App.Navigator>
     );
 }
