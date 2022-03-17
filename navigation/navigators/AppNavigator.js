@@ -1,14 +1,37 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
+import { CustomIcon } from '../../components/atoms';
+import colors from '../../theme/colors';
+import BottomTabBarStyle from '../../styles/others/BottomTabBar.style';
 
 import { TopScreen } from '../screens/ArtistsScreen';
 
-const App = createStackNavigator();
+const App = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Top';
+
+const getBottomTabIcon = (route, focused) => {
+    let iconName;
+    const iconColor = focused ? colors.SECONDARY_TEXT : colors.PRIMARY_TEXT;
+
+    switch (route.name) {
+        case 'Top':
+            iconName = 'emoji-events';
+            break;
+    }
+
+    return <CustomIcon name={iconName} color={iconColor} size={30} />
+}
 
 export default function AuthNavigator() {
     return (
-        <App.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+        <App.Navigator
+            initialRouteName={INITIAL_ROUTE_NAME}
+            screenOptions={({route}) => ({
+                tabBarIcon: ({focused}) => getBottomTabIcon(route, focused),
+                tabBarStyle: BottomTabBarStyle,
+                tabBarShowLabel: false
+            })}
+        >
             { /* ARTISTS */ }
             <App.Screen options={TopScreen.navigationOptions} name={'Top'} component={TopScreen.screen} />
         </App.Navigator>
