@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import AppNavigator from '../navigators/AppNavigator';
+import AuthNavigator from '../navigators/AuthNavigator';
 
 const TabApp = createStackNavigator();
 const navigatorOption = {
@@ -8,13 +8,13 @@ const navigatorOption = {
     gestureEnabled: false
 };
 
-export default function Application (props) {
+export default function Authentication (props) {
     return (
         <TabApp.Navigator
-            initialRouteName='ApplicationNavigator'
+            initialRouteName='AuthenticationNavigator'
             screenOptions={{ headerShown: false }}
         >
-            <TabApp.Screen name='ApplicationNavigator' component={AppNavigator} options={navigatorOption}/>
+            <TabApp.Screen name='AuthenticationNavigator' component={AuthNavigator} options={navigatorOption}/>
         </TabApp.Navigator>
     )
 }

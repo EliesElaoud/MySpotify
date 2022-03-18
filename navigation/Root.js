@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import * as Font from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
 import { isTokenExpired } from '../utils/Config';
@@ -8,6 +8,7 @@ import AppContext from './context/AppContext';
 
 import Splashscreen from '../screens/splashscreen/Splashscreen';
 import Application from './tabs/Application';
+import Authentication from './tabs/Authentication';
 
 class Root extends React.Component {
     constructor (props) {
@@ -34,7 +35,7 @@ class Root extends React.Component {
         const isTokenExpiredValue = await isTokenExpired();
 
         if (!isTokenExpiredValue) {
-            this.setState({ navigator : 'ApplicationNavigator' });
+            this.updateNavigator('Application');
         } else
             SecureStore.deleteItemAsync('params');
 
@@ -64,7 +65,8 @@ class Root extends React.Component {
                 { isLoading && <Splashscreen /> }
                 { !isLoading && 
                     <NavigationContainer>
-                        <Application navigatorName={navigator.name} />
+                        { navigator.name == 'Application' && <Application /> }
+                        { navigator.name == 'Authentication' && <Authentication /> }
                     </NavigationContainer> 
                 }
             </AppContext.Provider>
