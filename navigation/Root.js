@@ -4,6 +4,7 @@ import { View, StatusBar } from 'react-native';
 import * as Font from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
 import { isTokenExpired } from '../utils/Config';
+import AppContext from './context/AppContext';
 
 import Splashscreen from '../screens/splashscreen/Splashscreen';
 import Application from './tabs/Application';
@@ -14,7 +15,12 @@ class Root extends React.Component {
 
         this.state = {
             isLoading : true,
-            navigator : 'AuthenticationNavigator'
+            navigator : {
+                name : 'Authentication',
+                lastNav: '',
+                updateNavigator : this.updateNavigator.bind(this),
+                getNameNavigator : this.getNameNavigator.bind(this)
+            }
         }
     }
 
@@ -46,19 +52,22 @@ class Root extends React.Component {
         });
     }
 
+    updateNavigator = (navigator) => this.setState({ navigator : { ...this.state.navigator, name : navigator } });
+    getNameNavigator = () => this.state.navigator.name;
+
     render () {
         const { isLoading, navigator } = this.state;
 
         return (
-            <View style={{ flex : 1 }}>
+            <AppContext.Provider value={navigator} style={{ flex : 1 }}>
                 <StatusBar style="auto" />
                 { isLoading && <Splashscreen /> }
                 { !isLoading && 
                     <NavigationContainer>
-                        <Application route={navigator} />
+                        <Application navigatorName={navigator.name} />
                     </NavigationContainer> 
                 }
-            </View>
+            </AppContext.Provider>
         )
     }
 }

@@ -7,6 +7,7 @@ import secrets from '../../utils/Secret';
 import axios from 'react-native-axios';
 import * as AuthSession from 'expo-auth-session';
 import * as SecureStore from 'expo-secure-store';
+import AppContext from '../../navigation/context/AppContext';
 
 const USE_PROXY = true;
 const SCOPES_ARR = ['user-modify-playback-state','user-read-currently-playing','user-read-playback-state','user-library-modify',
@@ -53,7 +54,7 @@ class Authentication extends React.Component {
             }
 
             await SecureStore.setItemAsync('params', JSON.stringify(params));
-            this.props.navigation.navigate('ApplicationNavigator');
+            this.context.updateNavigator('Application');
         }
     }
 
@@ -67,4 +68,5 @@ class Authentication extends React.Component {
     }
 }
 
+Authentication.contextType = AppContext;
 export default Authentication;

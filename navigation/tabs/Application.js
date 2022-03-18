@@ -12,11 +12,11 @@ const navigatorOption = {
 export default function Application (props) {
     return (
         <TabApp.Navigator
-            initialRouteName={props.route}
+            initialRouteName={'Authentication'}
             screenOptions={{ headerShown: false }}
         >
-            <TabApp.Screen name='AuthenticationNavigator' component={AuthNavigator} options={navigatorOption}/>
-            <TabApp.Screen name='ApplicationNavigator' component={AppNavigator} options={navigatorOption}/>
+            { props.navigatorName == 'Authentication' && <TabApp.Screen name='AuthenticationNavigator' component={AuthNavigator} options={navigatorOption}/> }
+            { props.navigatorName == 'Application' && <TabApp.Screen name='ApplicationNavigator' component={AppNavigator} options={navigatorOption}/> }
         </TabApp.Navigator>
     )
 }
