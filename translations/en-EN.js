@@ -8,6 +8,10 @@ export default {
 
     // top
     top_artists : 'Top artists',
-    popularity : 'Popularity at '
+    popularity : 'Popularity at ',
     // --
+
+    // subscriptions
+    subscriptions : 'Subscriptions'
+    //--
 };

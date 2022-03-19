@@ -4,6 +4,7 @@ import { CustomHeader } from '../../components/atoms';
 import { ArtistsList } from '../../components/organisms';
 import { getTopArtistsList } from '../../services/Artists.service';
 import styles from '../../styles/screens/artists/Top.style';
+import AppContext from '../../navigation/context/AppContext';
 
 class Top extends React.Component {
     constructor (props) {
@@ -17,7 +18,7 @@ class Top extends React.Component {
     async componentDidMount () {
         this.setState({ isLoading : true });
         
-        const topArtistsList = await getTopArtistsList(this.props.navigation);
+        const topArtistsList = await getTopArtistsList(this.context);
 
         this.setState({ isLoading : false, topArtistsList : topArtistsList });
     }
@@ -34,4 +35,5 @@ class Top extends React.Component {
     }
 }
 
+Top.contextType = AppContext;
 export default Top;

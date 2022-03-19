@@ -7,6 +7,7 @@ import BottomTabBarStyle from '../../styles/others/BottomTabBar.style';
 import { TopScreen } from '../screens/ArtistsScreen';
 import { StatsScreen } from '../screens/StatsScreen';
 import { SubscriptionsScreen } from '../screens/AlbumsScreen';
+import { SettingsScreen } from '../screens/SettingsScreen';
 
 const App = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Top';
@@ -25,6 +26,9 @@ const getBottomTabIcon = (route, focused) => {
         case 'Stats':
             iconName = 'insert-chart';
             break;
+        case 'Settings':
+            iconName = 'settings'
+            break;
     }
 
     return <CustomIcon name={iconName} color={iconColor} size={30} />
@@ -41,8 +45,9 @@ export default function AuthNavigator() {
             })}
         >
             <App.Screen options={TopScreen.navigationOptions} name={'Top'} component={TopScreen.screen} />
-            <App.Screen options={SubscriptionsScreen.navigationOptions} name={'Subscriptions'} component={SubscriptionsScreen.screen} />
+            {/* <App.Screen options={SubscriptionsScreen.navigationOptions} name={'Subscriptions'} component={SubscriptionsScreen.screen} /> */}
             <App.Screen options={StatsScreen.navigationOptions} name={'Stats'} component={StatsScreen.screen} />
+            <App.Screen options={SettingsScreen.navigationOptions} name={'Settings'} component={SettingsScreen.screen} />
         </App.Navigator>
     );
 }

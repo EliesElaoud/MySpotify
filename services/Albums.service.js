@@ -2,19 +2,18 @@ import axios from 'axios';
 import {getConfig, isTokenExpired} from '../utils/Config';
 import { disconnect } from '../utils/User';
 
-export const getTopArtistsList = async (appContext) => {
+export const getSubscriptionsList = async () => {
 
     const goDisconnect = await isTokenExpired();
 
     if (goDisconnect)
-        disconnect(appContext);
+        disconnect();
 
     const config = await getConfig();
     config.params = {
-        time_range : 'short_term',
         limit : 50
     }
 
-    const response = await axios.get('https://api.spotify.com/v1/me/top/artists', config);
-    return response.data.items;
+    const response = await axios.get('https://api.spotify.com/v1/browse/new-releases', config);
+    return response.data;
 }
