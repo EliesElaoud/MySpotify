@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
         zIndex : 1,
         position : 'absolute',
         right : 0, left: 0
+    },
+    
+    backBtn : {
+        flexDirection : 'row',
+        justifyContent : 'space-between',
+        zIndex : 10
     }
 });
 

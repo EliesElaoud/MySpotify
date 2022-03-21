@@ -9,10 +9,10 @@ class CustomListElement extends React.Component {
     }
 
     render () {
-        const { title, subtitle, imageUri, onPress } = this.props;
+        const { title, subtitle, imageUri, onPress, customStyle } = this.props;
 
         return (
-            <TouchableOpacity {...this.props} style={styles.container} onPress={() => onPress()}>
+            <TouchableOpacity {...this.props} style={[styles.container, customStyle]} onPress={() => onPress()}>
                 <Image source={{ uri : imageUri }} style={styles.image} />
                 <CustomTitle isSubtitleSemiBold title={title} subtitle={subtitle} titleFontSize={20} subtitleFontSize={11} />
             </TouchableOpacity>

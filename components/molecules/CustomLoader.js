@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import styles from '../../styles/molecules/CustomLoader';
+import styles from '../../styles/molecules/CustomLoader.style';
 
 class CustomLoader extends React.Component {
     constructor(props) {

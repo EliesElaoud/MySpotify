@@ -33,6 +33,13 @@ export default {
     logout : 'Déconnexion',
     // --
 
+    // artist infos
+    in_your_top : 'dans votre top artistes',
+    followers : 'abonnés',
+    level_of_popularity : 'niveau de popularité',
+    see_the_artist_on_spotify : 'Voir l\'artiste sur Spotify',
+    // --
+
     // common
     no_results : 'Pas de résultats'
     // --

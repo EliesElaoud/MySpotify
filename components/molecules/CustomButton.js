@@ -10,11 +10,11 @@ class CustomButton extends React.Component {
     }
 
     render () {
-        const { text, style, onPress, iconName } = this.props;
+        const { text, style, onPress, iconName, iconType } = this.props;
 
         return (
             <TouchableOpacity style={[styles.container, style]} onPress={() => onPress()}>
-                <CustomIcon name={iconName} color={colors.PRIMARY_TEXT} style={styles.icon} size={20} />
+                <CustomIcon type={iconType} name={iconName} color={colors.PRIMARY_TEXT} style={styles.icon} size={20} />
                 <CustomText style={styles.text}>{ text }</CustomText>
             </TouchableOpacity>
         );

@@ -27,7 +27,7 @@ class Top extends React.Component {
         return (
             <View style={styles.container}>
                 <CustomHeader />
-                <ArtistsList withSpecialFirstItem isLoading={isLoading} data={topArtistsList} />
+                <ArtistsList withSpecialFirstItem isLoading={isLoading} data={topArtistsList} navigation={this.props.navigation} />
             </View>
         );
     }

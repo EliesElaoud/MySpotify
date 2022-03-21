@@ -10,6 +10,10 @@ class ArtistsList extends React.Component {
         super (props);
     }
 
+    goToArtist = (artistId, rank) => {
+        this.props.navigation.navigate('ArtistInfo', { artistId : artistId, rank : rank });
+    }
+
     renderListItem = ({ item, index }) => {
         const { withSpecialFirstItem } = this.props;
 
@@ -17,9 +21,9 @@ class ArtistsList extends React.Component {
         const popularity = translate('popularity') + item.popularity + '/100';
 
         if (index == 0 && withSpecialFirstItem)
-            return (<TopArtistsHeader onPress={() => alert()} key={index} title={artistName} subtitle={popularity} imageUri={item.images[0].url} />);
+            return (<TopArtistsHeader onPress={() => this.goToArtist(item.id, index+1)} key={index} title={artistName} subtitle={popularity} imageUri={item.images[0].url} />);
         else
-            return (<CustomListElement onPress={() => alert()} key={index} title={artistName} subtitle={popularity} imageUri={item.images[0].url} />)
+            return (<CustomListElement onPress={() => this.goToArtist(item.id, index+1)} key={index} title={artistName} subtitle={popularity} imageUri={item.images[0].url} />)
     }
 
     render () {
