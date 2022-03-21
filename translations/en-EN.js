@@ -12,6 +12,14 @@ export default {
     // --
 
     // subscriptions
-    subscriptions : 'Subscriptions'
-    //--
+    subscriptions : 'Subscriptions',
+    // --
+
+    // statistics
+    statistics : 'Statistics',
+    // --
+
+    // common
+    no_results : 'No results'
+    // --
 };

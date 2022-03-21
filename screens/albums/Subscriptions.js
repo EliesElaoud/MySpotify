@@ -5,7 +5,7 @@ import { CustomTitle } from '../../components/molecules';
 import styles from '../../styles/screens/albums/Subscriptions.style';
 import translate from '../../translations/translation';
 import { getSubscriptionsList } from '../../services/Albums.service';
-import AlbumsList from '../../components/organisms/AlbumsList';
+import { AlbumsList } from '../../components/organisms';
 
 class Subscriptions extends React.Component {
     constructor(props) {

@@ -7,8 +7,8 @@ class AlbumsList extends React.Component {
         super(props);
     }
 
-    renderListItem = item => {
-        return <Image style={styles.albumImage} source={{ uri : item.item.images[0].url }} />
+    renderListItem = (item, index) => {
+        return <Image key={index} style={styles.albumImage} source={{ uri : item.item.images[0].url }} />
     } 
 
     render() {

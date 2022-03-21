@@ -1,7 +1,8 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import translate from '../../translations/translation';
-import { CustomListElement } from '../molecules';
+import { CustomListElement, CustomLoader } from '../molecules';
+import CustomEmptyList from '../molecules/CustomEmptyList';
 import TopArtistsHeader from './TopArtistsHeader';
 
 class ArtistsList extends React.Component {
@@ -22,15 +23,23 @@ class ArtistsList extends React.Component {
     }
 
     render () {
-        const { data } = this.props;
+        const { data, isLoading } = this.props;
 
         return (
-            <FlatList
-                contentContainerStyle={{ paddingBottom : 32 }}
-                data={data}
-                renderItem={this.renderListItem}
-                keyExtractor={(item, index) => index}
-            />
+            <>
+                {
+                    isLoading ?
+                        <CustomLoader />
+                    :
+                    <FlatList
+                        contentContainerStyle={{ paddingBottom : 32, flexGrow : 1 }}
+                        data={data}
+                        renderItem={this.renderListItem}
+                        keyExtractor={(item, index) => index}
+                        ListEmptyComponent={<CustomEmptyList />}
+                    />
+                }
+            </>
         );
     }
 }

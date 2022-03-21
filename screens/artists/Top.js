@@ -11,25 +11,23 @@ class Top extends React.Component {
         super (props);
 
         this.state = {
-            topArtistsList : []
+            topArtistsList : [],
+            isLoading : true
         }
     }
 
     async componentDidMount () {
-        this.setState({ isLoading : true });
-        
         const topArtistsList = await getTopArtistsList(this.context);
-
         this.setState({ isLoading : false, topArtistsList : topArtistsList });
     }
 
     render () {
-        const { topArtistsList } = this.state;
+        const { topArtistsList, isLoading } = this.state;
 
         return (
             <View style={styles.container}>
                 <CustomHeader />
-                <ArtistsList withSpecialFirstItem data={topArtistsList} />
+                <ArtistsList withSpecialFirstItem isLoading={isLoading} data={topArtistsList} />
             </View>
         );
     }
