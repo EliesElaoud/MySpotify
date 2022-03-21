@@ -4,7 +4,7 @@ import { CustomButton, CustomListElement, CustomLoader, CustomShortInfoCard } fr
 import { TopArtistsHeader } from '../../components/organisms';
 import { getArtistInfos, getRelatedArtist } from '../../services/Artists.service';
 import AppContext from '../../navigation/context/AppContext';
-import { CustomHeader } from '../../components/atoms';
+import { CustomHeader, CustomText } from '../../components/atoms';
 import styles from '../../styles/screens/artists/ArtistInfos.style';
 import translate from '../../translations/translation';
 import { numberWithSpaces } from '../../utils/Number';
@@ -75,6 +75,7 @@ class ArtistInfos extends React.Component {
                             <CustomShortInfoCard info={artistInfos.genre} />
                             <CustomShortInfoCard info={artistInfos.popularity} label={translate('level_of_popularity')} />
 
+                            <CustomText isSemiBold style={styles.youMightLike}>{ translate('you_might_also_like') }</CustomText>
                             { this.renderArtistList() }
 
                             <CustomButton iconName='spotify' iconType='material-community' text={translate('see_the_artist_on_spotify')} style={styles.btnGoToArtist} onPress={() => this.goToSpotifyArtist()} />

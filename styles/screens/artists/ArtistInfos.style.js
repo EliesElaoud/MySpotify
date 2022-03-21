@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
         paddingHorizontal : 32
     },
 
+    youMightLike : {
+        fontSize : 15,
+        marginTop : 16,
+        color : colors.PRIMARY_TEXT_TRANSPARENT
+    },
+
     btnGoToArtist : {
         marginVertical : 32,
         backgroundColor : colors.SECONDARY_BACKGROUND

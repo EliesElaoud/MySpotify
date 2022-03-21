@@ -38,6 +38,7 @@ export default {
     followers : 'abonnés',
     level_of_popularity : 'niveau de popularité',
     see_the_artist_on_spotify : 'Voir l\'artiste sur Spotify',
+    you_might_also_like : 'Vous aimerez peut-être aussi...',
     // --
 
     // common
