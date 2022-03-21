@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         backgroundColor : colors.PRIMARY_BACKGROUND_LIGHT,
         borderRadius : 8,
         padding : 16,
+        marginBottom : 16,
 
         shadowColor: "#000",
         shadowOffset: {

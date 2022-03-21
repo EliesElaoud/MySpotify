@@ -3,7 +3,7 @@ export default {
 
     // authentication
     connect_spotify : 'Log in to your spotify account',
-    connexion : 'Connexion',
+    connexion : 'Login',
     // --
 
     // top
@@ -17,6 +17,20 @@ export default {
 
     // statistics
     statistics : 'Statistics',
+    favorite_artist : 'Favorite artist',
+    popularity_of : 'Popularity of ',
+    favorite_genre : 'Favorite genre',
+    is_your_favorite_genre : 'is your favorite genre',
+    // --
+
+    // history
+    history : 'History',
+    // --
+
+    // settings
+    settings : 'Settings',
+    version : 'Version',
+    logout : 'Logout',
     // --
 
     // common

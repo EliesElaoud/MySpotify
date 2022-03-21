@@ -62,7 +62,7 @@ class Authentication extends React.Component {
         return (
             <View style={ styles.container }>
                 <CustomTitle title={translate('title')} subtitle={translate('connect_spotify')} titleFontSize={25} subtitleFontSize={12} />
-                <CustomButton text={translate('connexion')} style={styles.btnLogin} onPress={() => this.handleSpotifyLogin()} />
+                <CustomButton iconName='login' text={translate('connexion')} style={styles.btnLogin} onPress={() => this.handleSpotifyLogin()} />
             </View>
         )
     }

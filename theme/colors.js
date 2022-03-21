@@ -2,6 +2,7 @@ const colors = {
     // FONT
     PRIMARY_TEXT : '#FFFFFF',
     SECONDARY_TEXT : '#59C58F',
+    THIRD_TEXT : '#2F3137',
 
     PRIMARY_TEXT_TRANSPARENT : 'rgba(255,255,255,0.5)',
 
@@ -9,7 +10,10 @@ const colors = {
     PRIMARY_BACKGROUND : '#1C1D21',
     SECONDARY_BACKGROUND : '#59C58F',
 
-    PRIMARY_BACKGROUND_LIGHT : '#2F3137'
+    PRIMARY_BACKGROUND_LIGHT : '#2F3137',
+
+    // COMMON
+    DANGER : '#ED254E'
 }
 
 export default colors;

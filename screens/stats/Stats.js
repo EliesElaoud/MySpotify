@@ -23,7 +23,8 @@ class Stats extends React.Component {
         const userStatistics = await getUserStatistics(this.context);
 
         const formatedStatistics = [
-            this.formatInformations('Artiste favoris', userStatistics.userFavoriteArtist, 'Popularité de ' + userStatistics.userFavoriteArtistPopularity + '/100')
+            this.formatInformations(translate('favorite_artist'), userStatistics.userFavoriteArtist, translate('popularity_of') + userStatistics.userFavoriteArtistPopularity + '/100'),
+            this.formatInformations('Genre préféré', userStatistics.userFavoriteGenre, 'est votre genre préféré en ce moment')
         ];
 
         this.setState({ isLoading : false, statistics : formatedStatistics });

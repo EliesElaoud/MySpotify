@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         alignItems : 'center',
         flexDirection : 'row',
         borderRadius : 8,
-        backgroundColor : colors.SECONDARY_BACKGROUND
+        backgroundColor : colors.PRIMARY_BACKGROUND_LIGHT
     },
 
     icon : {

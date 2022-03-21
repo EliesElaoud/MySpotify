@@ -20,11 +20,11 @@ class StatisticsList extends React.Component {
                 isLoading ?
                     <CustomLoader />
                 :
-                <FlatList
-                    data={data}
-                    keyExtractor={(item, index) => index}
-                    renderItem={ this.renderListElement }
-                />
+                    <FlatList
+                        data={data}
+                        keyExtractor={(item, index) => index}
+                        renderItem={ this.renderListElement }
+                    />
             }
             </>
         );
