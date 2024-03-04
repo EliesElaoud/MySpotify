@@ -5,9 +5,13 @@ import styles from '../../styles/screens/authentication/Authentication.style';
 import translate from '../../translations/translation';
 import secrets from '../../utils/Secret';
 import axios from 'react-native-axios';
+import * as Linking from 'expo-linking';
 import * as AuthSession from 'expo-auth-session';
 import * as SecureStore from 'expo-secure-store';
 import AppContext from '../../navigation/context/AppContext';
+import * as WebBrowser from 'expo-web-browser';
+
+WebBrowser.maybeCompleteAuthSession();
 
 const USE_PROXY = true;
 const SCOPES_ARR = ['user-modify-playback-state','user-read-currently-playing','user-read-playback-state','user-library-modify',
@@ -24,39 +28,40 @@ class Authentication extends React.Component {
         };
     }
 
-    handleSpotifyLogin = async () => {
-        const redirectUrl = AuthSession.makeRedirectUri({
-            native: secrets.redirectUri,
-            USE_PROXY
-        });
+    async handleSpotifyLogin() {
+        let authUrl = 'https://accounts.spotify.com/authorize' +
+        '?client_id=' + secrets.clientId +
+        '&redirect_uri=' + Linking.createURL() +
+        '&scope=' + encodeURIComponent(SCOPES) +
+        '&response_type=token';
 
-        const results = await AuthSession.startAsync({
-          authUrl:
-          'https://accounts.spotify.com/authorize?client_id=' + secrets.clientId +
-          '&redirect_uri=' + encodeURIComponent(redirectUrl) +
-          '&scope=' + encodeURIComponent(SCOPES) + '&response_type=token'
-        });
+        let results = await WebBrowser.openAuthSessionAsync(authUrl, Linking.createURL());
         
         if (results.type !== 'success') {
             this.setState({ ...this.state, didError: true })
         } else {
+
+            const { url } = results;
+            const token = url.split('access_token=')[1].split('&')[0];
+            const expires_in = url.split('expires_in=')[1].split('&')[0];
+
             const userInfo = await axios.get(`https://api.spotify.com/v1/me`, {
                 headers: {
-                "Authorization": `Bearer ${results.params.access_token}`
+                "Authorization": `Bearer ${token}`
                 }
             });
             this.setState({ ...this.state, userInfo: userInfo.data })
 
             const params = {
-                token : results.params.access_token,
+                token : token,
                 datetime : Date.now(),
-                expires_in : results.params.expires_in
+                expires_in : expires_in
             }
 
             await SecureStore.setItemAsync('params', JSON.stringify(params));
             this.context.updateNavigator('Application');
         }
-    }
+    };
 
     render () {
         return (

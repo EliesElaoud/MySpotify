@@ -62,27 +62,30 @@ class ArtistInfos extends React.Component {
         const { isLoading, artistInfos } = this.state;
 
         return(
-            <ScrollView style={styles.container}>
-                { isLoading && <CustomLoader /> }
-
-                { !isLoading &&
-                    <>
-                        <CustomHeader />
-                        <TopArtistsHeader navigation={this.props.navigation} withBackBtn title={artistInfos.name} subtitle={artistInfos.rank} imageUri={artistInfos.image} />
-
-                        <View style={styles.containerInfo}>
-                            <CustomShortInfoCard info={artistInfos.followers} label={translate('followers')} />
-                            <CustomShortInfoCard info={artistInfos.genre} />
-                            <CustomShortInfoCard info={artistInfos.popularity} label={translate('level_of_popularity')} />
-
-                            <CustomText isSemiBold style={styles.youMightLike}>{ translate('you_might_also_like') }</CustomText>
-                            { this.renderArtistList() }
-
-                            <CustomButton iconName='spotify' iconType='material-community' text={translate('see_the_artist_on_spotify')} style={styles.btnGoToArtist} onPress={() => this.goToSpotifyArtist()} />
-                        </View>
-                    </>  
+            <>
+                { isLoading && 
+                    <View style={styles.container}>
+                        <CustomLoader />
+                    </View> 
                 }
-            </ScrollView>
+                { !isLoading &&
+                    <ScrollView style={styles.container}>
+                            <CustomHeader />
+                            <TopArtistsHeader navigation={this.props.navigation} withBackBtn title={artistInfos.name} subtitle={artistInfos.rank} imageUri={artistInfos.image} />
+
+                            <View style={styles.containerInfo}>
+                                <CustomShortInfoCard info={artistInfos.followers} label={translate('followers')} />
+                                <CustomShortInfoCard info={artistInfos.genre} />
+                                <CustomShortInfoCard info={artistInfos.popularity} label={translate('level_of_popularity')} />
+
+                                <CustomText isSemiBold style={styles.youMightLike}>{ translate('you_might_also_like') }</CustomText>
+                                { this.renderArtistList() }
+
+                                <CustomButton iconName='spotify' iconType='material-community' text={translate('see_the_artist_on_spotify')} style={styles.btnGoToArtist} onPress={() => this.goToSpotifyArtist()} />
+                            </View>
+                    </ScrollView>
+                }
+            </>
         );
     }
 }

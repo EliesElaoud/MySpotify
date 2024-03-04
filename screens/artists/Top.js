@@ -5,6 +5,7 @@ import { ArtistsList } from '../../components/organisms';
 import { getTopArtistsList } from '../../services/Artists.service';
 import styles from '../../styles/screens/artists/Top.style';
 import AppContext from '../../navigation/context/AppContext';
+import { CustomLoader } from '../../components/molecules';
 
 class Top extends React.Component {
     constructor (props) {
