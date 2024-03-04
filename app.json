@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MySpotifyV2",
-    "slug": "MySpotifyV2",
+    "name": "MySpotify",
+    "slug": "MySpotify",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
